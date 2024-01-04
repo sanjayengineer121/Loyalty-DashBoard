@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2019 - present [AppSeed](https://www.linkedin.com/in/ersanjay19/)
+Copyright (c) 2019 - present [SANJAY](https://www.linkedin.com/in/ersanjay19/)
 
 <br />
 
