@@ -1,0 +1,95 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Add Sales Entry</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Sales Invoice</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5>Add Sales Entry</h5>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form action="/addsale" method="post">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Mobile No.</label>
+                                                            <input type="text" name="mobile" class="form-control" placeholder="Mobile No.">
+                                                            <small id="emailHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Voucher No.</label>
+                                                            <input type="text" name="Voucher" class="form-control" placeholder="Voucher No">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label>Amount</label>
+                                                            <input type="text" name="Amount" class="form-control" placeholder="Amount">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Notes</label>
+                                                            <input type="text" name="Notes" class="form-control" placeholder="Notes">
+                                                        </div>
+
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                        </div>
+                                                        
+                                                        <button class="btn btn-primary" onclick="javascript:alert('item added successfully');" >Submit</button>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                      
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

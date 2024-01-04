@@ -1,0 +1,597 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <!--[ daily sales section ] start-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card daily-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Daily Sales</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                                            class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>₹
+                                                        {{last_7_sales}}</h3>
+                                                </div>
+
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0">Sales</p>
+                                                </div>
+                                            </div>
+                                            <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme" role="progressbar"
+                                                        style="width: 100%;" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ daily sales section ] end-->
+                                <!--[ Monthly  sales section ] starts-->
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card Monthly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Monthly Sales</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                            class="feather icon-arrow-down text-c-red f-30 m-r-10"></i>₹
+                                                        {{last_3_month_sales}}</h3>
+                                                </div>
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0">Sales</p>
+                                                </div>
+                                            </div>
+                                            <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme2" role="progressbar"
+                                                        style="width: 100%;" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ Monthly  sales section ] end-->
+                                <!--[ year  sales section ] starts-->
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales">
+                                        <div class="card-block">
+                                            <h6 class="mb-4">Total Sales</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i
+                                                            class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>₹
+                                                        {{total_sales}}</h3>
+                                                </div>
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0">Sales</p>
+                                                </div>
+                                            </div>
+                                            <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme" role="progressbar"
+                                                        style="width: 100%;" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ year  sales section ] end-->
+                                <!--[ Recent Users ] start-->
+                                <div class="col-xl-8 col-md-6">
+                                    <div class="card Recent-Users">
+                                        <div class="card-header">
+                                            <h5>Recent Users</h5>
+                                        </div>
+                                        <div class="card-block px-0 py-3">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        {% for item in latest_5_customers %}
+                                                    <tr class="unread">
+                                                        <td><img class="rounded-circle" style="width:40px;"
+                                                                    src="{{ config.ASSETS_ROOT }}/images/user/avatar-1.jpg" alt="activity-user">
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="mb-1">Mobile :: {{item.mobile}}]</h6>
+                                                            <p class="m-0">Points :: {{item.points}}</p>
+                                                        </td>
+                                                        <td>
+                                                            <h6 class="text-muted"><i
+                                                                    class="fas fa-circle text-c-green f-10 m-r-15"></i>{{item.created_on}}</h6>
+                                                        </td>
+                                                        <td><a href="#!" class="label theme-bg text-white f-12">Active</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[ Recent Users ] end-->
+
+                                <!-- [ statistics year chart ] start -->
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card card-event">
+                                        <div class="card-block">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col">
+                                                    <h5 class="m-0">Upcoming Offers</h5>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <label class="label theme-bg2 text-white f-14 f-w-400 float-right">34%</label>
+                                                </div>
+                                            </div>
+                                            <h2 class="mt-3 f-w-300">{{last_week_visits}}<sub class="text-muted f-14">Competitors</sub></h2>
+                                            <h6 class="text-muted mt-4 mb-0">You can participate in getting Offers </h6>
+                                            <i class="fab fa-angellist text-c-purple f-50"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-block border-bottom">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-auto">
+                                                    <i class="feather icon-zap f-30 text-c-green"></i>
+                                                </div>
+                                                <div class="col">
+                                                    <h3 class="f-w-300">{{last_week_sales}}</h3>
+                                                    <span class="d-block text-uppercase">Last Week Sales</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-auto">
+                                                    <i class="feather icon-map-pin f-30 text-c-blue"></i>
+                                                </div>
+                                                <div class="col">
+                                                    <h3 class="f-w-300">{{last_week_visits}}</h3>
+                                                    <span class="d-block text-uppercase">Last Week Total Visits</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- [ statistics year chart ] end -->
+                                <!--[social-media section] start-->
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card card-social">
+                                        <div class="card-block border-bottom">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-auto">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                                                </div>
+                                                <div class="col text-right">
+                                                    <h3>{{totalcus}}</h3>
+                                                    <h5 class="text-c-green mb-0"> <span
+                                                            class="text-muted">Total Customer</span></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row align-items-center justify-content-center card-active">
+                                                <div class="col-6">
+                                                    <h6 class="text-center m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h6 class="text-center  m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-theme2" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card card-social">
+                                        <div class="card-block border-bottom">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-auto">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M32 32C32 14.3 46.3 0 64 0S96 14.3 96 32V240H32V32zM224 192c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V192zm-64-64c17.7 0 32 14.3 32 32v48c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32zm160 96c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V224zm-96 88l0-.6c9.4 5.4 20.3 8.6 32 8.6c13.2 0 25.4-4 35.6-10.8c8.7 24.9 32.5 42.8 60.4 42.8c11.7 0 22.6-3.1 32-8.6V352c0 88.4-71.6 160-160 160H162.3c-42.4 0-83.1-16.9-113.1-46.9L37.5 453.5C13.5 429.5 0 396.9 0 363V336c0-35.3 28.7-64 64-64h88c22.1 0 40 17.9 40 40s-17.9 40-40 40H96c-8.8 0-16 7.2-16 16s7.2 16 16 16h56c39.8 0 72-32.2 72-72z"/></svg>
+                                                </div>
+                                                <div class="col text-right">
+                                                    <h3>{{total_points}}</h3>
+                                                    <h5 class="text-c-purple mb-0"> <span class="text-muted">Total Points</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row align-items-center justify-content-center card-active">
+                                                <div class="col-6">
+                                                    <h6 class="text-center m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-green" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h6 class="text-center  m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-blue" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card card-social">
+                                        <div class="card-block border-bottom">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-auto">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M32 32C32 14.3 46.3 0 64 0S96 14.3 96 32V240H32V32zM224 192c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V192zm-64-64c17.7 0 32 14.3 32 32v48c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32zm160 96c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V224zm-96 88l0-.6c9.4 5.4 20.3 8.6 32 8.6c13.2 0 25.4-4 35.6-10.8c8.7 24.9 32.5 42.8 60.4 42.8c11.7 0 22.6-3.1 32-8.6V352c0 88.4-71.6 160-160 160H162.3c-42.4 0-83.1-16.9-113.1-46.9L37.5 453.5C13.5 429.5 0 396.9 0 363V336c0-35.3 28.7-64 64-64h88c22.1 0 40 17.9 40 40s-17.9 40-40 40H96c-8.8 0-16 7.2-16 16s7.2 16 16 16h56c39.8 0 72-32.2 72-72z"/></svg>
+                                                </div>
+                                                <div class="col text-right">
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row align-items-center justify-content-center card-active">
+                                                <div class="col-6">
+                                                    <h6 class="text-center m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-green" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h6 class="text-center  m-b-10"><span
+                                                            class="text-muted m-r-5"></span></h6>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-c-blue" role="progressbar"
+                                                                style="width:100%;height:6px;" aria-valuenow="100"
+                                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--[social-media section] end-->
+                                <!-- [ rating list ] starts-->
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card user-list">
+                                        <div class="card-header">
+                                            <h5>Rating</h5>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row align-items-center justify-content-center m-b-20">
+                                                <div class="col-6">
+                                                    <h2 class="f-w-300 d-flex align-items-center float-left m-0">4.7 <i
+                                                            class="fas fa-star f-10 m-l-10 text-c-yellow"></i></h2>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h6 class="d-flex  align-items-center float-right m-0">0.4 <i
+                                                            class="fas fa-caret-up text-c-green f-22 m-l-10"></i></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <h6 class="align-items-center float-left"><i
+                                                            class="fas fa-star f-10 m-r-10 text-c-yellow"></i>5</h6>
+                                                    <h6 class="align-items-center float-right">384</h6>
+                                                    <div class="progress m-t-30 m-b-20" style="height: 6px;">
+                                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                                                style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <h6 class="align-items-center float-left"><i
+                                                            class="fas fa-star f-10 m-r-10 text-c-yellow"></i>4</h6>
+                                                    <h6 class="align-items-center float-right">145</h6>
+                                                    <div class="progress m-t-30  m-b-20" style="height: 6px;">
+                                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                                                style="width: 35%;" aria-valuenow="35" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <h6 class="align-items-center float-left"><i
+                                                            class="fas fa-star f-10 m-r-10 text-c-yellow"></i>3</h6>
+                                                    <h6 class="align-items-center float-right">24</h6>
+                                                    <div class="progress m-t-30  m-b-20" style="height: 6px;">
+                                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                                                style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <h6 class="align-items-center float-left"><i
+                                                            class="fas fa-star f-10 m-r-10 text-c-yellow"></i>2</h6>
+                                                    <h6 class="align-items-center float-right">1</h6>
+                                                    <div class="progress m-t-30  m-b-20" style="height: 6px;">
+                                                        <div class="progress-bar progress-c-theme" role="progressbar"
+                                                                style="width: 10%;" aria-valuenow="10" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <h6 class="align-items-center float-left"><i
+                                                            class="fas fa-star f-10 m-r-10 text-c-yellow"></i>1</h6>
+                                                    <h6 class="align-items-center float-right">0</h6>
+                                                    <div class="progress m-t-30  m-b-20" style="height: 6px;">
+                                                        <div class="progress-bar" role="progressbar" style="width:0;"
+                                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- [ rating list ] end-->
+                                <div class="col-xl-8 col-md-12 m-b-30">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                                aria-controls="home" aria-selected="false">Today</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active show" id="profile-tab" data-toggle="tab"
+                                                href="#profile" role="tab" aria-controls="profile" aria-selected="true">Last
+                                                Week</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+                                                role="tab" aria-controls="contact" aria-selected="false">All</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                            {% set items_per_page = 10 %}
+                                                {% set page = request.args.get('page', 1) | int %}
+                                                {% set start_index = (page - 1) * items_per_page %}
+                                                {% set end_index = start_index + items_per_page %}
+
+                                            <table class="table table-hover">
+                                                    
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <th>Customer-No</th>
+                                                        <th>Created Date</th>
+                                                        <th>Total Points</th>
+                                                        <th>Tiers</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                         
+                                                <tbody>
+                                                    {% for item in Today_data[start_index:end_index] %}
+                                                    <tr>
+                                                        <td><h6 class="m-0"><img class="rounded-circle  m-r-10"
+                                                            style="width:40px;"
+                                                            src="{{ config.ASSETS_ROOT }}/images/user/avatar-3.jpg"
+                                                            alt="activity-user">{{ item.mobile }}</h6></td>
+                                                <td>{{ item.created_on }}</td>
+                                                <td>{{ item.points }}</td>
+                                                <td>
+                                                                {% if item.points >= 0 and item.points < 500 %}
+                                                                <p class="label theme-bg2 text-white f-12">SILVER</p>
+                                                                {% elif item.points >= 500 and item.points < 1000 %}
+
+                                                                <p class="label theme-bg2 text-white f-12">GOLD</p>
+
+                                                                {% elif item.points >= 1000 and item.points < 1500 %}
+
+                                                                <p class="label theme-bg3 text-c-green f-12">PLATINUM</p>
+
+                                                                {% elif item.points >= 1500 and item.points < 2000 %}
+
+                                                                <p class="label theme-bg text-white f-12">ROTHDIUM</p>
+
+                                                                {% else %}
+                                                                <p class="label theme-bg text-red f-12">URANIUM</p>
+                                                                {% endif %}
+                                                </td>
+                                                <td><a href="#!" class="label theme-bg text-white f-12">Active</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                    </table>
+                                             <!-- Next button -->
+                                             {% if end_index < Today_data | length %}
+                                             <nav aria-label="Page navigation">
+                                                 <ul class="pagination justify-content-end">
+                                                     <li class="page-item">
+                                                         <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                                                     </li>
+                                                 </ul>
+                                             </nav>
+                                             {% endif %}
+
+                                        </div>
+                                        
+                                        
+
+                                                <div class="tab-pane fade active show" id="profile" role="tabpanel"
+                                                aria-labelledby="profile-tab">
+                                                {% set items_per_page = 10 %}
+                                                {% set page = request.args.get('page', 1) | int %}
+                                                {% set start_index = (page - 1) * items_per_page %}
+                                                {% set end_index = start_index + items_per_page %}
+
+                                                <table class="table table-hover">
+                                                    
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th>Customer-No</th>
+                                                                    <th>Created Date</th>
+                                                                    <th>Total Points</th>
+                                                                    <th>Tiers</th>
+                                                                    <th>Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                     
+                                                            <tbody>
+                                                                {% for item in last_week_sales2[start_index:end_index] %}
+                                                                <tr>
+                                                                    <td><h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                        style="width:40px;"
+                                                                        src="{{ config.ASSETS_ROOT }}/images/user/avatar-1.jpg"
+                                                                        alt="activity-user">{{ item.mobile }}</h6></td>
+                                                            <td>{{ item.created_on }}</td>
+                                                            <td>{{ item.points }}</td>
+                                                            <td>
+                                                                {% if item.points >= 0 and item.points < 500 %}
+                                                                <p class="label theme-bg2 text-white f-12">SILVER</p>
+                                                                {% elif item.points >= 500 and item.points < 1000 %}
+
+                                                                <p class="label theme-bg2 text-white f-12">GOLD</p>
+
+                                                                {% elif item.points >= 1000 and item.points < 1500 %}
+
+                                                                <p class="label theme-bg3 text-c-green f-12">PLATINUM</p>
+
+                                                                {% elif item.points >= 1500 and item.points < 2000 %}
+
+                                                                <p class="label theme-bg text-white f-12">ROTHDIUM</p>
+
+                                                                {% else %}
+                                                                <p class="label theme-bg text-red f-12">URANIUM</p>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td><a href="#!" class="label theme-bg text-white f-12">Active</a>
+                                                            </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                </table>
+
+                                                 <!-- Next button -->
+                                                {% if end_index < last_week_sales2 | length %}
+                                                <nav aria-label="Page navigation">
+                                                    <ul class="pagination justify-content-end">
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                                {% endif %}
+                                            
+                                        </div>
+                                                
+                                                
+
+                                                <div class="tab-pane fade" id="contact" role="tabpanel"
+                                                aria-labelledby="contact-tab">
+                                                {% set items_per_page = 10 %}
+                                                {% set page = request.args.get('page', 1) | int %}
+                                                {% set start_index = (page - 1) * items_per_page %}
+                                                {% set end_index = start_index + items_per_page %}
+                                                <table class="table table-hover">
+                                                    
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th>Customer-No</th>
+                                                                    <th>Created Date</th>
+                                                                    <th>Total Points</th>
+                                                                    <th>Tiers</th>
+                                                                    <th>Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                     
+                                                            <tbody>
+                                                                {% for item in inventory_data[start_index:end_index] %}
+                                                                <tr>
+                                                                    <td><h6 class="m-0"><img class="rounded-circle  m-r-10"
+                                                                        style="width:40px;"
+                                                                        src="{{ config.ASSETS_ROOT }}/images/user/avatar-2.jpg"
+                                                                        alt="activity-user">{{ item.mobile }}</h6></td>
+                                                            <td>{{ item.created_on }}</td>
+                                                            <td>{{ item.points }}</td>
+                                                            <td>
+                                                                {% if item.points >= 0 and item.points < 500 %}
+                                                                <p class="label theme-bg2 text-white f-12">SILVER</p>
+                                                                {% elif item.points >= 500 and item.points < 1000 %}
+
+                                                                <p class="label theme-bg2 text-white f-12">GOLD</p>
+
+                                                                {% elif item.points >= 1000 and item.points < 1500 %}
+
+                                                                <p class="label theme-bg3 text-c-green f-12">PLATINUM</p>
+
+                                                                {% elif item.points >= 1500 and item.points < 2000 %}
+
+                                                                <p class="label theme-bg text-white f-12">ROTHDIUM</p>
+
+                                                                {% else %}
+                                                                <p class="label theme-bg text-red f-12">URANIUM</p>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td><a href="#!" class="label theme-bg text-white f-12">Active</a>
+                                                        </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                </table>
+
+                                                 <!-- Next button -->
+                                                {% if end_index < inventory_data | length %}
+                                                <nav aria-label="Page navigation">
+                                                    <ul class="pagination justify-content-end">
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                                {% endif %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->            
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

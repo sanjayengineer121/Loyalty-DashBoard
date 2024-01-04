@@ -1,0 +1,121 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<link rel="stylesheet" href="static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <!-- [ Main Content ] start -->
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Redeem Points Manually</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item">Sale</li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <!-- [ basic-map ] start -->
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Point Redeem</h5>
+                                            <span class="d-block m-t-5">Please enter requires feiled.</span>
+                                        </div>
+                                        <div class="card-block">
+                                            <div id="basic-map" class="set-map" style="height:400px;">
+                                                <form action="/redeempoint" method="post">
+                                                    <label class="form-group">
+                                                        <input type="text" name="mobile" class="form-control"  required>
+                                                        <span>Mobile Number</span>
+                                                        <span class="border"></span>
+                                                    </label>
+
+                                                    <label class="form-group" >
+                                                        <input type="text" name="point" class="form-control" required>
+                                                        <span for="">Points</span>
+                                                        <span class="border"></span>
+                                                    </label>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" onclick="javascript:alert('Point Redeemed successfully');" >Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- [ basic-map ] end -->
+
+                                <!-- [ Markers-map ] start -->
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Redeem Coupans</h5>
+                                            <span class="d-block m-t-5">Please enter requires feiled.</span>
+                                        </div>
+                                        <div class="card-block">
+                                            <div id="markers-map" class="set-map" style="height:400px;">
+                                                <form action="/redeemcoupan" method="post">
+                                                    <label class="form-group">
+                                                        <input type="text" name="mobile" class="form-control"  required>
+                                                        <span>Mobile No</span>
+                                                        <span class="border"></span>
+                                                    </label>
+                                            
+                                                    <label class="form-group" >
+                                                        <input type="text" name="coupan" class="form-control" required>
+                                                        <span for="">Coupans Code</span>
+                                                        <span class="border"></span>
+                                                    </label>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" onclick="javascript:alert('Coupans Redeem successfully');">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <!-- google-map Js -->
+    <script src="{{ config.ASSETS_ROOT }}/plugins/google-maps/js/gmaps.js"></script>
+    <script src="{{ config.ASSETS_ROOT }}/js/pages/google-maps.js"></script>
+
+{% endblock javascripts %}

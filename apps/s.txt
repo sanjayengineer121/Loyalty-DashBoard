@@ -1,0 +1,22 @@
+import json
+
+def search_by_mobile(json_file, mobile_number):
+    with open(json_file, 'r') as file:
+        user_data = json.load(file)
+
+    for user in user_data:
+        if user["mobile"] == mobile_number:
+            return user
+    return None
+
+# Example usage:
+json_file_path = 'customer_detail.json'
+mobile_to_search = "6388574919"
+
+result = search_by_mobile(json_file_path, mobile_to_search)
+
+if result:
+    print(f"{mobile_to_search}")
+    print(result)
+else:
+    print(f"No user found with mobile number {mobile_to_search}")

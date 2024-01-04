@@ -1,0 +1,105 @@
+{% extends "layouts/base.html" %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-12">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Bootstrap Tables</h5>
+                                    </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                                        <li class="breadcrumb-item"><a href="#!">Tables</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Basic Tables</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                                <!-- [ basic-table ] start -->
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-block table-border-style">
+                                            {% set items_per_page = 100 %}
+                                                {% set page = request.args.get('page', 1) | int %}
+                                                {% set start_index = (page - 1) * items_per_page %}
+                                                {% set end_index = start_index + items_per_page %}
+                                            <div class="table-responsive" class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                <table class="table table-hover">
+                                                    
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th>Customer-No</th>
+                                                                    <th>Points Added/Debited</th>
+                                                                    <th>Created Date</th>
+                                                                    <th>Voucher No</th>
+                                                                    <th>Bill Amount</th>
+                                                                    <th>Total Points</th>
+                                                                </tr>
+                                                            </thead>
+                                                     
+                                                            <tbody>
+                                                                {% for item in inventory_data[start_index:end_index] %}
+                                                                <tr>
+                                                            <td>{{ item.mobile_number }}</td>
+                                                            <td>{{ item.point_add }}</td>
+                                                            <td>{{ item.created_on }}</td>
+                                                            <td>{{ item.invoice_no }}</td>
+                                                            <td>{{ item.bill_amount }}</td>
+                                                            <td>{{ item.current_points }}</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                </table>
+
+                                                 <!-- Next button -->
+                                            {% if end_index < inventory_data | length %}
+                                            <nav aria-label="Page navigation">
+                                                <ul class="pagination justify-content-end">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                            {% endif %}
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  
+                                <!-- [ basic-table ] end -->
+
+                                
+                            </div>
+                            <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
